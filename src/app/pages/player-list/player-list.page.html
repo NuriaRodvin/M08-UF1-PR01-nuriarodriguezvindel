@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Lista de jugadores</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card *ngFor="let jugador of jugadores" class="jugador-card">
+    <div class="card-header-flex">
+      <div class="titulo-info">
+        <ion-card-title>
+          <strong>{{ jugador.nombre }} {{ jugador.apellidos }}</strong>
+          <span class="guion-separador">–</span>
+          <span class="equipo">{{ jugador.equipo }}</span>
+        </ion-card-title>
+      </div>
+
+      <div class="acciones-botones">
+        <div class="boton-accion">
+          <ion-button size="small" (click)="abrirCamara(jugador)">Cámara</ion-button>
+          <div class="estado-texto">{{ jugador.camaraEstado }}</div>
+        </div>
+
+        <div class="boton-accion">
+          <ion-button size="small" (click)="compartirJugador(jugador)">Compartir</ion-button>
+          <div class="estado-texto">{{ jugador.compartirEstado }}</div>
+        </div>
+      </div>
+    </div>
+
+    <ion-card-content>
+      <p><strong>Altura:</strong> {{ jugador.altura }} m</p>
+      <p><strong>Peso:</strong> {{ jugador.peso }} kg</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

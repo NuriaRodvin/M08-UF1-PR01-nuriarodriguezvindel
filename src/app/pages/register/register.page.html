@@ -1,0 +1,41 @@
+<ion-content class="login-bg">
+  <div class="login-wrapper">
+    <div class="login-box">
+      <h1>Crear cuenta</h1>
+
+      <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
+        <ion-item lines="full">
+          <ion-label position="floating">Correo electrónico</ion-label>
+          <ion-input formControlName="email" type="email"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+          <p class="ion-padding-start">Correo inválido</p>
+        </ion-text>
+
+        <ion-item lines="full">
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input formControlName="password" type="password"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+          <p class="ion-padding-start">Mínimo 6 caracteres</p>
+        </ion-text>
+
+        <ion-item lines="full">
+          <ion-label position="floating">Confirmar contraseña</ion-label>
+          <ion-input formControlName="confirmPassword" type="password"></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" type="submit" [disabled]="registerForm.invalid" class="btn-acceder">
+          REGISTRARSE
+        </ion-button>
+
+        <ion-text class="registro-texto" color="primary">
+          <a class="enlace" (click)="goToLogin()">¿YA TIENES CUENTA? INICIA SESIÓN</a>
+
+        </ion-text>
+      </form>
+    </div>
+  </div>
+</ion-content>
+
+
