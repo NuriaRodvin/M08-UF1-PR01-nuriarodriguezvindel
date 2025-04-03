@@ -24,7 +24,8 @@ export class PlayerListPage {
       peso: '113',
       equipo: 'Los Ángeles Lakers',
       camaraEstado: '',
-      compartirEstado: ''
+      compartirEstado: '',
+      imagen: 'assets/img/lebron.jpeg'
     },
     {
       id: 2,
@@ -34,7 +35,8 @@ export class PlayerListPage {
       peso: '84',
       equipo: 'Guerreros del Estado Dorado',
       camaraEstado: '',
-      compartirEstado: ''
+      compartirEstado: '',
+      imagen: 'assets/img/curry.jpeg'
     },
     {
       id: 3,
@@ -44,7 +46,8 @@ export class PlayerListPage {
       peso: '104',
       equipo: 'Mavericks de Dallas',
       camaraEstado: '',
-      compartirEstado: ''
+      compartirEstado: '',
+      imagen: 'assets/img/doncic.jpeg'
     }
   ];
 

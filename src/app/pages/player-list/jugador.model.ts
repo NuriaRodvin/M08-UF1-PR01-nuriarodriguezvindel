@@ -7,6 +7,7 @@ export interface Jugador {
     equipo: string;
     camaraEstado: string;
     compartirEstado: string;
+    imagen: string;
   }
   
   

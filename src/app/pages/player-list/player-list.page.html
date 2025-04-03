@@ -29,11 +29,18 @@
     </div>
 
     <ion-card-content>
+      <div class="imagen-info">
+        <img [src]="jugador.imagen" [alt]="'Imagen de' + jugador.nombre" class="imagen-jugador" />
+        <em class="datos-personales">Datos personales:</em>
+      </div>
       <p><strong>Altura:</strong> {{ jugador.altura }} m</p>
       <p><strong>Peso:</strong> {{ jugador.peso }} kg</p>
     </ion-card-content>
   </ion-card>
 </ion-content>
+
+
+
 
 
 
