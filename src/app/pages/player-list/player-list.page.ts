@@ -1,5 +1,5 @@
 import { CommonModule, NgFor } from '@angular/common';
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { Jugador } from './jugador.model';
 
@@ -48,26 +48,43 @@ export class PlayerListPage {
     }
   ];
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private ngZone: NgZone
+  ) {}
+
+  playSound(nombre: string) {
+    const audio = new Audio(`assets/sounds/${nombre}`);
+    audio.play();
+  }
 
   abrirCamara(jugador: Jugador) {
     jugador.camaraEstado = 'Abriendo cámara...';
+    this.playSound('camera.mp3');
     this.cdr.detectChanges();
+
     setTimeout(() => {
-      jugador.camaraEstado = 'Cámara activada';
-      this.cdr.detectChanges();
+      this.ngZone.run(() => {
+        jugador.camaraEstado = 'Cámara activada';
+        this.cdr.detectChanges();
+      });
     }, 1500);
   }
 
   compartirJugador(jugador: Jugador) {
     jugador.compartirEstado = 'Compartiendo...';
+    this.playSound('share.mp3');
     this.cdr.detectChanges();
+
     setTimeout(() => {
-      jugador.compartirEstado = 'Web compartida';
-      this.cdr.detectChanges();
+      this.ngZone.run(() => {
+        jugador.compartirEstado = 'Web compartida';
+        this.cdr.detectChanges();
+      });
     }, 1500);
   }
 }
+
 
 
 
