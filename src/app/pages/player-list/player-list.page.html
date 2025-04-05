@@ -16,6 +16,7 @@
 
       <!-- Información + botones superiores -->
       <div class="lado-derecho">
+        <!-- Cabecera con nombre, equipo y botones -->
         <div class="cabecera-superior">
           <div class="titulo-info">
             <ion-card-title>
@@ -65,7 +66,7 @@
           <p><strong>Peso:</strong> {{ jugador.peso }} kg</p>
 
           <ion-button size="small" fill="clear" (click)="marcarFavorito(jugador)">
-            {{ jugador.favorito ? '★ Favorito' : '☆ Sin favoritos' }}
+            {{ jugador.favorito ? '★ Añadido a favoritos' : '☆ Añadir a favoritos' }}
           </ion-button>
         </ion-card-content>
       </div>
