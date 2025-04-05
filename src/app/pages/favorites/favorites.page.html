@@ -5,25 +5,27 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-card *ngFor="let jugador of favoritos" class="jugador-card">
-    <img [src]="jugador.imagen" alt="Foto de {{ jugador.nombre }}" class="imagen-jugador" />
+  <ion-card *ngFor="let jugador of jugadoresFavoritos">
+    <img [src]="jugador.imagen" alt="{{ jugador.nombre }}" class="imagen-jugador" />
+
     <ion-card-header>
-      <ion-card-title>
-        {{ jugador.nombre }} {{ jugador.apellidos }}
-      </ion-card-title>
-      <ion-card-subtitle>
-        {{ jugador.equipo }}
-      </ion-card-subtitle>
+      <ion-card-title>{{ jugador.nombre }} {{ jugador.apellidos }}</ion-card-title>
+      <ion-card-subtitle>{{ jugador.equipo }}</ion-card-subtitle>
     </ion-card-header>
+
     <ion-card-content>
-      <ion-button expand="block" (click)="verDetalle(jugador)">
-        Ver Detalles
-      </ion-button>
+      <p><strong>Altura:</strong> {{ jugador.altura }} m</p>
+      <p><strong>Peso:</strong> {{ jugador.peso }} kg</p>
+      <p><strong>País:</strong> {{ jugador.pais }}</p>
+      <p><strong>Número:</strong> {{ jugador.numero }}</p>
+      <p><strong>Posición:</strong> {{ jugador.posicion }}</p>
     </ion-card-content>
   </ion-card>
 
-  <div *ngIf="favoritos.length === 0" class="mensaje-vacio">
-    <p>No hay jugadores favoritos aún.</p>
-  </div>
+  <ion-button expand="block" color="medium" (click)="volver()">
+    Volver
+  </ion-button>
 </ion-content>
+
+
 

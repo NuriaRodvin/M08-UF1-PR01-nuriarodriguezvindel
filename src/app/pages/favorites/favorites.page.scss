@@ -1,23 +1,14 @@
-ion-content {
-    --background: #f0f8ff;
-  }
-  
-  .jugador-card {
+ion-card {
     margin-bottom: 16px;
-    border-radius: 16px;
-    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
   
   .imagen-jugador {
     width: 100%;
     height: auto;
-    display: block;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
   }
   
-  .mensaje-vacio {
-    text-align: center;
-    color: #888;
-    margin-top: 40px;
-    font-style: italic;
-  }
   

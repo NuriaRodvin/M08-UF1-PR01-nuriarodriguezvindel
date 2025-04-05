@@ -3,27 +3,29 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Jugador } from '../player-list/jugador.model';
-import { PlayerListPage } from '../player-list/player-list.page'; // Para acceder a los datos
 
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.page.html',
   styleUrls: ['./favorites.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule]
+  imports: [CommonModule, IonicModule],
 })
 export class FavoritesPage {
-  favoritos: Jugador[] = [];
+  jugadoresFavoritos: Jugador[] = [];
 
   constructor(private router: Router) {
-    const jugadores = history.state.jugadores as Jugador[] || [];
-    this.favoritos = jugadores.filter(j => j.favorito);
+    const nav = this.router.getCurrentNavigation();
+    const allJugadores = nav?.extras?.state?.['jugadores'];
+
+    if (allJugadores) {
+      this.jugadoresFavoritos = allJugadores.filter((j: Jugador) => j.favorito);
+    }
   }
 
-  verDetalle(jugador: Jugador) {
-    this.router.navigateByUrl('/player/' + jugador.id, {
-      state: { jugador }
-    });
+  volver() {
+    this.router.navigateByUrl('/players');
   }
 }
+
 

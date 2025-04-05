@@ -7,16 +7,17 @@
 <ion-content class="ion-padding">
   <ion-card *ngFor="let jugador of jugadores" class="jugador-card">
     <div class="card-header-flex">
-      
       <!-- Imagen + Botón de detalles -->
       <div class="lado-izquierdo">
         <img [src]="jugador.imagen" [alt]="'Imagen de ' + jugador.nombre" class="imagen-jugador" />
-        <ion-button size="small" (click)="irADetalle(jugador)" class="boton-detalle">Ver detalles</ion-button>
+        <ion-button size="small" (click)="irADetalle(jugador)" class="boton-detalle">
+          Ver detalles
+        </ion-button>
       </div>
 
-      <!-- Información + botones superiores -->
+      <!-- Info y botones -->
       <div class="lado-derecho">
-        <!-- Cabecera con nombre, equipo y botones -->
+        <!-- Cabecera -->
         <div class="cabecera-superior">
           <div class="titulo-info">
             <ion-card-title>
@@ -26,40 +27,37 @@
             </ion-card-title>
           </div>
 
+          <!-- Botones -->
           <div class="botones-superior">
-            <!-- Botón de Cámara -->
+            <!-- Cámara -->
             <div class="boton-accion">
               <ion-button fill="clear" size="small" (click)="abrirCamara(jugador)">
                 <ion-icon name="camera-outline"></ion-icon>
               </ion-button>
-              <div class="estado-texto">
-                Cámara
-              </div>
+              <div class="estado-texto">Cámara</div>
             </div>
 
-            <!-- Botón de Compartir -->
+            <!-- Compartir -->
             <div class="boton-accion">
               <ion-button fill="clear" size="small" (click)="compartirJugador(jugador)">
                 <ion-icon name="share-social-outline"></ion-icon>
               </ion-button>
-              <div class="estado-texto">
-                Compartir
-              </div>
+              <div class="estado-texto">Compartir</div>
             </div>
           </div>
         </div>
 
-        <!-- Textos dinámicos debajo -->
+        <!-- Mensajes dinámicos a la derecha -->
         <div class="acciones-botones">
-          <div class="boton-accion">
-            <div class="estado-texto">{{ jugador.camaraEstado }}</div>
+          <div class="estado-accion">
+            {{ jugador.camaraEstado }}
           </div>
-          <div class="boton-accion">
-            <div class="estado-texto">{{ jugador.compartirEstado }}</div>
+          <div class="estado-accion">
+            {{ jugador.compartirEstado }}
           </div>
         </div>
 
-        <!-- Datos del jugador -->
+        <!-- Datos personales -->
         <ion-card-content>
           <em class="datos-personales">Datos personales:</em>
           <p><strong>Altura:</strong> {{ jugador.altura }} m</p>
@@ -73,15 +71,8 @@
     </div>
   </ion-card>
 
-  <!-- Botón para ver favoritos -->
+  <!-- Ver favoritos -->
   <ion-button expand="block" color="tertiary" [routerLink]="['/favorites']" [state]="{ jugadores: jugadores }">
     Ver favoritos ⭐
   </ion-button>
 </ion-content>
-
-
-
-
-
-
-

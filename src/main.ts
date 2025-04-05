@@ -1,15 +1,15 @@
-import { importProvidersFrom } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { RouteReuseStrategy, provideRouter } from '@angular/router';
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { importProvidersFrom } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
-
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
 import { environment } from './environments/environment';
-
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -18,12 +18,9 @@ bootstrapApplication(AppComponent, {
       FormsModule,
       ReactiveFormsModule
     ),
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), // 🔥 aquí va fuera
-    provideAuth(() => getAuth()),
-    provideRouter(routes),
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-  ],
+    provideHttpClient(),
+    provideRouter(routes, withComponentInputBinding()),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideAuth(() => getAuth())
+  ]
 });
-
-
-
