@@ -1,88 +1,145 @@
-# 🏀 NBA Rookie App – Nuria Rodríguez Vindel
+# 📱 NBA Rookie App
 
-Esta app híbrida desarrollada con **Ionic + Angular** permite explorar jugadores de la NBA, consultar su información personal, interactuar con botones de cámara y compartir, y ver el detalle completo de cada jugador.
-
-## 📱 Funcionalidades implementadas (Nivel 1)
-
-- ✅ **Login y registro de usuario**
-- ✅ **Pantalla principal con lista de jugadores**
-- ✅ **Datos personales de cada jugador (nombre, equipo, altura, peso, etc.)**
-- ✅ **Botón de cámara** con efecto visual y sonido
-- ✅ **Botón de compartir** con mensaje y sonido
-- ✅ **Indicador de jugador favorito (estrella)**
-- ✅ **Botón para ir a favoritos**
-- ✅ **Página de detalle del jugador**, con:
-  - Información adicional: país, número y posición
-  - Botón para marcar como favorito desde el detalle
-  - Botón para compartir desde el detalle
-  - Botón para volver a la lista---
+Aplicación híbrida desarrollada con **Ionic + Angular** que permite explorar jugadores de la NBA, ver detalles, marcar favoritos, usar funcionalidades nativas como cámara y compartir, y guardar datos en Firebase.
 
 ---
 
-## 🧩 Funcionalidades implementadas
+## 🚀 Tecnologías usadas
 
-- ✅ Login y registro de usuario con validaciones.
-- ✅ Lista de jugadores con:
-  - Nombre, apellidos, altura, peso y equipo.
-  - Botón 📸 cámara que simula captura (con sonido y texto).
-  - Botón 📤 compartir (con sonido, mensaje y funcionalidad real con Capacitor).
-- ✅ Página de detalle de cada jugador:
-  - Información adicional: país, número y posición.
-  - Imagen del jugador.
-  - Botón para marcar como favorito.
-- ✅ Soporte de temas claro/oscuro.
-- ✅ Estilo responsive adaptado a móvil y escritorio.
+- **Ionic + Angular**
+- **Capacitor (Camera y Share)**
+- **Firebase (Firestore)**
+- **API externa**: https://www.balldontlie.io/
 
 ---
 
-## 🛠️ Tecnologías usadas
+## 🧩 Estructura del proyecto
 
-- **Ionic Framework** 7
-- **Angular** 15+
-- **Capacitor** (para cámara y compartir)
-- SCSS con variables de Ionic
-- Soporte nativo preparado para Android Studio
+```
+src/
+├── app/
+│   ├── pages/
+│   │   ├── login/
+│   │   ├── register/
+│   │   ├── home/
+│   │   ├── player-list/
+│   │   ├── player-detail/
+│   │   ├── favorites/
+│   │   └── jugador.model.ts
+│   ├── services/
+│   │   └── nba.service.ts
+│   ├── guards/
+│   │   └── auth.guard.ts
+│   ├── app.routes.ts
+│   ├── app.component.ts
+├── assets/
+│   ├── img/
+│   └── sounds/
+├── environments/
+├── theme/
+└── index.html
+```
 
 ---
 
-## 📲 Instalación y ejecución local
+## 🔧 Instalación y configuración
 
+### 1. Clonar repositorio y entrar en el proyecto
 ```bash
-git clone https://github.com/NuriaRodvin/M08-UF1-PR01-nuriarodriguezvindel.git
-cd M08-UF1-PR01-nuriarodriguezvindel
+git clone <url-del-repo>
+cd m08-UF01-PR01-2-nuriarodriguezvindel
+```
+
+### 2. Instalar dependencias
+```bash
 npm install
-ionic serve
+```
 
+### 3. Configurar Firebase (en `src/environments/environment.ts`)
+```ts
+export const environment = {
+  production: false,
+  firebaseConfig: {
+    apiKey: "<API_KEY>",
+    authDomain: "<PROJECT>.firebaseapp.com",
+    projectId: "<PROJECT_ID>",
+    storageBucket: "<BUCKET>.appspot.com",
+    messagingSenderId: "<SENDER_ID>",
+    appId: "<APP_ID>"
+  }
+};
+```
 
-📦 Capacitor (para funcionalidades nativas)
-bash
+### 4. Build + Sync con Capacitor
+```bash
+npm run build
+npx cap sync
+```
 
-npm install @capacitor/core @capacitor/cli
-npx cap init
-npx cap add android
+---
 
+## ✨ Funcionalidades implementadas
 
+### ✅ Nivel 1: Login / Registro
+- Login con Firebase Auth
+- Registro con validación de formulario
+- Guardado de usuario y protección con AuthGuard
 
-🔊 Recursos multimedia
-Las imágenes de jugadores se encuentran en src/assets/img/
+### ✅ Nivel 2: API externa
+- Consumo de la API https://www.balldontlie.io/
+- Muestra de jugadores reales junto a 3 fijos (LeBron, Curry, Doncic)
 
-Los sonidos de los botones están en src/assets/sounds/ como:
+### ✅ Nivel 3: Persistencia
+- Guardado de favoritos en **Firestore** (Firebase)
+- Consulta y eliminación de favoritos
 
-camera.mp3
+### ✅ Nivel 4: Funcionalidades nativas
+- Cámara (sacar o seleccionar imagen)
+- Compartir jugador (modal nativo)
+- Sonidos personalizados
+- Toasts para acciones
 
-share.mp3
+---
 
-✨ Autora
-Nuria Rodríguez Vindel
-Proyecto desarrollado para el módulo M08 – Unidad UF1
-Ciclo Formativo de Grado Superior
+## 🔐 Autenticación
+- Login / Registro gestionado por Firebase
+- Páginas protegidas por AuthGuard
 
+---
 
-## 🛠️ Tecnologías usadas
+## 📲 Plugins Capacitor usados
+```bash
+npm install @capacitor/camera
+npm install @capacitor/share
+```
 
-- [Ionic Framework](https://ionicframework.com/)
-- Angular
-- Capacitor Plugins: `@capacitor/camera`, `@capacitor/share`
-- HTML5 + SCSS
+---
 
+## 📷 Assets usados
+- Imágenes en `assets/img/`
+- Sonidos en `assets/sounds/`
+
+---
+
+## 🧪 Pruebas
+- Navegación funcionando correctamente
+- Favoritos se guardan y recuperan
+- Botón de "Ver detalles" redirige a la ficha del jugador
+- Cámara y compartir funcionan como funcionalidades nativas
+
+---
+
+## 📦 Build y despliegue
+```bash
+npm run build
+npx cap sync
+npx cap open android # o ios si corresponde
+```
+
+---
+
+## 👩🏻 Nuria Rodríguez Vindel
+**Asignatura:** M08 - Programación Multimedia y Dispositivos Móviles  
+**Práctica:** ICC0008-UF1-PR01.2  
+**App:** NBA Rookie App
 
