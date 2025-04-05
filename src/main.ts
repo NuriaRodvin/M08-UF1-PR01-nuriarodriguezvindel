@@ -18,6 +18,8 @@ bootstrapApplication(AppComponent, {
       FormsModule,
       ReactiveFormsModule
     ),
+    
+
     provideHttpClient(),
     provideRouter(routes, withComponentInputBinding()),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),

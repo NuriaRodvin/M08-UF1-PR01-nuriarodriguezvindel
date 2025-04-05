@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule, Router } from '@angular/router';
 import { Jugador } from '../player-list/jugador.model';
+import { NbaService } from 'src/app/services/nba.service';
 
 @Component({
   selector: 'app-favorites',
@@ -15,13 +16,14 @@ import { Jugador } from '../player-list/jugador.model';
 export class FavoritesPage {
   jugadoresFavoritos: Jugador[] = [];
 
-  constructor(private router: Router) {
-    const nav = this.router.getCurrentNavigation();
-    const allJugadores = nav?.extras?.state?.['jugadores'];
+  constructor(
+    private router: Router,
+    private nbaService: NbaService
+  ) {}
 
-    if (allJugadores) {
-      this.jugadoresFavoritos = allJugadores.filter((j: Jugador) => j.favorito);
-    }
+  ionViewWillEnter() {
+    // Recarga favoritos actualizados desde el servicio (y localStorage)
+    this.jugadoresFavoritos = this.nbaService.getFavoritos();
   }
 
   irADetalle(jugador: Jugador) {
@@ -34,3 +36,4 @@ export class FavoritesPage {
     this.router.navigateByUrl('/players');
   }
 }
+

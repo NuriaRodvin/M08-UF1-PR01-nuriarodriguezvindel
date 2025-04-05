@@ -143,7 +143,8 @@ export class PlayerListPage {
         posicion: player.position || 'N/A'
       }));
 
-      this.jugadores = [...this.jugadores, ...nuevos];
+      this.jugadores = [...jugadoresIniciales, ...nuevos];
+    this.nbaService.setJugadores(this.jugadores);
     });
   }
 
@@ -205,7 +206,13 @@ export class PlayerListPage {
 
   async marcarFavorito(jugador: Jugador) {
     jugador.favorito = !jugador.favorito;
-
+  
+    if (jugador.favorito) {
+      this.nbaService.addFavorito(jugador);
+    } else {
+      this.nbaService.removeFavorito(jugador);
+    }
+  
     const toast = await this.toastController.create({
       message: jugador.favorito
         ? `${jugador.nombre} añadido a favoritos`
@@ -213,7 +220,8 @@ export class PlayerListPage {
       duration: 1500,
       position: 'bottom'
     });
-
+  
     toast.present();
   }
+  
 }

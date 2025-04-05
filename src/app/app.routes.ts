@@ -1,37 +1,41 @@
+// src/app/app.routes.ts
 import { Routes } from '@angular/router';
+import { provideRouter } from '@angular/router';
+
+import { PlayerListPage } from './pages/player-list/player-list.page';
+import { FavoritesPage } from './pages/favorites/favorites.page';
+import { PlayerDetailPage } from './pages/player-detail/player-detail.page';
+import { RegisterPage } from './pages/register/register.page';
+import { LoginPage } from './pages/login/login.page';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },
-  {
-    path: 'login',
-    loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage),
-  },
-  {
-    path: 'register',
-    loadComponent: () => import('./pages/register/register.page').then(m => m.RegisterPage),
+    redirectTo: 'players',
+    pathMatch: 'full'
   },
   {
     path: 'players',
-    loadComponent: () =>
-      import('./pages/player-list/player-list.page').then(m => m.PlayerListPage)
-  },
-  {
-    path: 'player/:id',
-    loadComponent: () => import('./pages/player-detail/player-detail.page').then(m => m.PlayerDetailPage),
+    component: PlayerListPage
   },
   {
     path: 'favorites',
-    loadComponent: () => import('./pages/favorites/favorites.page').then(m => m.FavoritesPage),
+    component: FavoritesPage
   },
   {
     path: 'player-detail',
-    loadComponent: () => import('./pages/player-detail/player-detail.page').then(m => m.PlayerDetailPage),
+    component: PlayerDetailPage
+  },
+  {
+    path: 'register',
+    component: RegisterPage
+  },
+  {
+    path: 'login',
+    component: LoginPage
   }
-
-
 ];
+
+export const appRouterProviders = [provideRouter(routes)];
+
 
