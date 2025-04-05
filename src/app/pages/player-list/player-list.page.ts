@@ -127,11 +127,16 @@ export class PlayerListPage {
         quality: 90,
         allowEditing: false,
         resultType: CameraResultType.Uri,
-        source: CameraSource.Camera
+        source: CameraSource.Prompt // Permite elegir entre cámara o galería
       });
-      console.log('📸 Imagen capturada:', image.webPath);
+
+      if (image.webPath) {
+        jugador.imagen = image.webPath;
+        this.cdr.detectChanges(); // Forzar actualización de la vista
+        console.log('📸 Imagen actualizada:', image.webPath);
+      }
     } catch (error) {
-      console.error('Error al abrir la cámara', error);
+      console.error('Error al capturar imagen', error);
     }
   }
 
