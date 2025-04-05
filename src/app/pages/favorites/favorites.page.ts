@@ -1,15 +1,16 @@
+// src/app/pages/favorites/favorites.page.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { Jugador } from '../player-list/jugador.model';
 
 @Component({
   selector: 'app-favorites',
-  templateUrl: './favorites.page.html',
-  styleUrls: ['./favorites.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule],
+  imports: [CommonModule, IonicModule, RouterModule],
+  templateUrl: './favorites.page.html',
+  styleUrls: ['./favorites.page.scss']
 })
 export class FavoritesPage {
   jugadoresFavoritos: Jugador[] = [];
@@ -23,9 +24,13 @@ export class FavoritesPage {
     }
   }
 
+  irADetalle(jugador: Jugador) {
+    this.router.navigateByUrl('/player-detail', {
+      state: { jugador }
+    });
+  }
+
   volver() {
     this.router.navigateByUrl('/players');
   }
 }
-
-

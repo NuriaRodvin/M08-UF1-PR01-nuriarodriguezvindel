@@ -1,12 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Favoritos</ion-title>
+    <ion-title>Jugadores Favoritos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+  <ion-card *ngIf="jugadoresFavoritos.length === 0">
+    <ion-card-content>No hay jugadores favoritos.</ion-card-content>
+  </ion-card>
+
   <ion-card *ngFor="let jugador of jugadoresFavoritos">
-    <img [src]="jugador.imagen" alt="{{ jugador.nombre }}" class="imagen-jugador" />
+    <img [src]="jugador.imagen" [alt]="'Imagen de ' + jugador.nombre" class="imagen-jugador" />
 
     <ion-card-header>
       <ion-card-title>{{ jugador.nombre }} {{ jugador.apellidos }}</ion-card-title>
@@ -14,11 +18,12 @@
     </ion-card-header>
 
     <ion-card-content>
+      <p><strong>Número:</strong> {{ jugador.numero }}</p>
+      <p><strong>País:</strong> {{ jugador.pais }}</p>
       <p><strong>Altura:</strong> {{ jugador.altura }} m</p>
       <p><strong>Peso:</strong> {{ jugador.peso }} kg</p>
-      <p><strong>País:</strong> {{ jugador.pais }}</p>
-      <p><strong>Número:</strong> {{ jugador.numero }}</p>
       <p><strong>Posición:</strong> {{ jugador.posicion }}</p>
+      <ion-button fill="outline" (click)="irADetalle(jugador)">Ver detalles</ion-button>
     </ion-card-content>
   </ion-card>
 
@@ -26,6 +31,5 @@
     Volver
   </ion-button>
 </ion-content>
-
 
 
