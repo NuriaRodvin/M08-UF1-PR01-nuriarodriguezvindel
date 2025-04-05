@@ -1,4 +1,5 @@
 export const environment = {
+  production: false,
   firebaseConfig: {
     apiKey: "AIzaSyDnWREE3_TFp9dpPZCUeo39sR3bRBRQqAs",
     authDomain: "nba-nuriarodriguezvindel.firebaseapp.com",

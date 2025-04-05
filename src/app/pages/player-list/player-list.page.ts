@@ -19,54 +19,7 @@ import { NbaService } from 'src/app/services/nba.service';
   imports: [CommonModule, IonicModule, RouterModule]
 })
 export class PlayerListPage {
-  jugadores: Jugador[] = [
-    {
-      id: 1,
-      nombre: 'Michael',
-      apellidos: 'Jordan',
-      equipo: 'Chicago Bulls',
-      altura: '1,98',
-      peso: 98,
-      imagen: 'assets/img/default.jpg',
-      favorito: false,
-      camaraEstado: '',
-      compartirEstado: '',
-      pais: 'USA',
-      numero: 23,
-      posicion: 'Escolta'
-    },
-    {
-      id: 2,
-      nombre: 'Stephen',
-      apellidos: 'Curry',
-      equipo: 'Golden State Warriors',
-      altura: '1,88',
-      peso: 84,
-      imagen: 'assets/img/default.jpg',
-      favorito: true,
-      camaraEstado: '',
-      compartirEstado: '',
-      pais: 'USA',
-      numero: 30,
-      posicion: 'Base'
-    },
-    {
-      id: 3,
-      nombre: 'Luka',
-      apellidos: 'Doncic',
-      equipo: 'Dallas Mavericks',
-      altura: '2,01',
-      peso: 104,
-      imagen: 'assets/img/default.jpg',
-      favorito: false,
-      camaraEstado: '',
-      compartirEstado: '',
-      pais: 'Eslovenia',
-      numero: 77,
-      posicion: 'Escolta'
-    }
-  ];
-  
+  jugadores: Jugador[] = [];
 
   constructor(
     private nbaService: NbaService,
@@ -144,7 +97,7 @@ export class PlayerListPage {
       }));
 
       this.jugadores = [...jugadoresIniciales, ...nuevos];
-    this.nbaService.setJugadores(this.jugadores);
+      this.nbaService.setJugadores(this.jugadores);
     });
   }
 
@@ -206,13 +159,13 @@ export class PlayerListPage {
 
   async marcarFavorito(jugador: Jugador) {
     jugador.favorito = !jugador.favorito;
-  
+
     if (jugador.favorito) {
-      this.nbaService.addFavorito(jugador);
+      await this.nbaService.addFavoritoFirebase(jugador);
     } else {
-      this.nbaService.removeFavorito(jugador);
+      await this.nbaService.removeFavoritoFirebase(jugador.id);
     }
-  
+
     const toast = await this.toastController.create({
       message: jugador.favorito
         ? `${jugador.nombre} añadido a favoritos`
@@ -220,8 +173,7 @@ export class PlayerListPage {
       duration: 1500,
       position: 'bottom'
     });
-  
+
     toast.present();
   }
-  
 }

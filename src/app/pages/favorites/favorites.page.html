@@ -1,14 +1,19 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Jugadores Favoritos</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>⭐ Jugadores Favoritos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-card *ngIf="jugadoresFavoritos.length === 0">
+  <!-- Cargando -->
+  <ion-spinner *ngIf="cargando" name="crescent" class="spinner-center"></ion-spinner>
+
+  <!-- Mensaje si no hay favoritos -->
+  <ion-card *ngIf="!cargando && jugadoresFavoritos.length === 0">
     <ion-card-content>No hay jugadores favoritos.</ion-card-content>
   </ion-card>
 
+  <!-- Lista de favoritos -->
   <ion-card *ngFor="let jugador of jugadoresFavoritos">
     <img [src]="jugador.imagen" [alt]="'Imagen de ' + jugador.nombre" class="imagen-jugador" />
 
@@ -23,13 +28,25 @@
       <p><strong>Altura:</strong> {{ jugador.altura }} m</p>
       <p><strong>Peso:</strong> {{ jugador.peso }} kg</p>
       <p><strong>Posición:</strong> {{ jugador.posicion }}</p>
-      <ion-button fill="outline" (click)="irADetalle(jugador)">Ver detalles</ion-button>
+
+      <ion-button expand="block" fill="outline" color="tertiary" (click)="irADetalle(jugador)">
+        Ver detalles
+      </ion-button>
+
+      <ion-button color="danger" (click)="eliminarFavorito(jugador)" expand="block">
+        Eliminar de favoritos
+      </ion-button>
+      
+
     </ion-card-content>
   </ion-card>
 
   <ion-button expand="block" color="medium" (click)="volver()">
-    Volver
+    🔙 Volver
   </ion-button>
 </ion-content>
+
+
+
 
 

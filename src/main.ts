@@ -4,8 +4,10 @@ import { IonicModule } from '@ionic/angular';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
@@ -18,11 +20,11 @@ bootstrapApplication(AppComponent, {
       FormsModule,
       ReactiveFormsModule
     ),
-    
-
     provideHttpClient(),
     provideRouter(routes, withComponentInputBinding()),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth())
   ]
 });
+
