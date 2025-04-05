@@ -1,20 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonicModule } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { Jugador } from '../player-list/jugador.model';
+import { PlayerListPage } from '../player-list/player-list.page'; // Para acceder a los datos
 
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.page.html',
   styleUrls: ['./favorites.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [CommonModule, IonicModule]
 })
-export class FavoritesPage implements OnInit {
+export class FavoritesPage {
+  favoritos: Jugador[] = [];
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private router: Router) {
+    const jugadores = history.state.jugadores as Jugador[] || [];
+    this.favoritos = jugadores.filter(j => j.favorito);
   }
 
+  verDetalle(jugador: Jugador) {
+    this.router.navigateByUrl('/player/' + jugador.id, {
+      state: { jugador }
+    });
+  }
 }
+

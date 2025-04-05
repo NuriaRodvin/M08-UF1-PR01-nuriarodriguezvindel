@@ -7,18 +7,47 @@ ion-content {
     border-radius: 16px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
+    padding: 12px;
   }
   
   .card-header-flex {
     display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .lado-izquierdo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 130px;
+  }
+  
+  .imagen-jugador {
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .boton-detalle {
+    margin-top: 0.5rem;
+  }
+  
+  .lado-derecho {
+    flex: 1;
+  }
+  
+  .cabecera-superior {
+    display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    flex-wrap: wrap;
-    padding-bottom: 0;
   }
   
   .titulo-info {
-    max-width: 65%;
+    max-width: 60%;
     padding: 8px;
   }
   
@@ -33,11 +62,10 @@ ion-content {
     font-size: 0.9em;
   }
   
-  ion-card-content {
-    padding-top: 0;
-    padding-left: 16px;
-    padding-right: 16px;
-    font-size: 0.95rem;
+  .botones-superior ion-button {
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
   }
   
   .acciones-botones {
@@ -65,21 +93,18 @@ ion-content {
   .imagen-info {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     margin-bottom: 8px;
   }
   
-  .imagen-jugador {
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
-    object-fit: cover;
+  .datos-personales {
+    font-size: 0.9rem;
+    color: #444;
+    font-style: italic;
   }
   
-  .datos-personales {
-    font-style: italic;
-    font-size: 0.9rem;
-    margin-top: 4px;
+  ion-icon[name="star"] {
+    color: #ffd700;
   }
   
   @media screen and (max-width: 480px) {
@@ -92,9 +117,43 @@ ion-content {
       gap: 8px;
     }
   
-    .imagen-info {
-      align-items: flex-start;
+    .icono-detalle {
+      padding-left: 4px;
+    }
+  
+    .card-header-flex {
+      flex-direction: column;
+    }
+  
+    .lado-izquierdo {
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+  
+    .lado-derecho {
+      width: 100%;
     }
   }
+  .estado-texto {
+    font-size: 0.75rem;
+    color: #444;
+    margin-top: 4px;
+    text-align: center;
+    min-height: 1.2em;
+  }
   
-
+  .boton-accion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .etiqueta-fija {
+    font-size: 0.8rem;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 2px;
+    text-align: center;
+  }
+  

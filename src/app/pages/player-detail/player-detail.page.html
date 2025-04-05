@@ -1,13 +1,43 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>player-detail</ion-title>
+    <ion-title>Detalle del jugador</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">player-detail</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-card *ngIf="jugador">
+    <img [src]="jugador.imagen" alt="Imagen del jugador" class="imagen-detalle" />
+
+    <ion-card-header>
+      <ion-card-title>
+        <strong>{{ jugador.nombre }} {{ jugador.apellidos }}</strong>
+        <ion-icon
+          [name]="jugador.favorito ? 'star' : 'star-outline'"
+          color="warning"
+          style="float: right; font-size: 1.4em;"
+          (click)="toggleFavorito()"
+        ></ion-icon>
+      </ion-card-title>
+      <ion-card-subtitle>{{ jugador.equipo }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Altura:</strong> {{ jugador.altura }} m</p>
+      <p><strong>Peso:</strong> {{ jugador.peso }} kg</p>
+      <p><strong>País:</strong> {{ jugador.pais }}</p>
+      <p><strong>Número:</strong> {{ jugador.numero }}</p>
+      <p><strong>Posición:</strong> {{ jugador.posicion }}</p>
+
+      <ion-button expand="block" (click)="compartirJugador()">
+        Compartir jugador
+      </ion-button>
+
+      <ion-button expand="block" fill="clear" (click)="volver()">
+        Volver a la lista
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
+
+

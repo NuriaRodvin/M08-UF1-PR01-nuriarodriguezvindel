@@ -1,0 +1,23 @@
+ion-content {
+    --background: #f0f8ff;
+  }
+  
+  .jugador-card {
+    margin-bottom: 16px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  
+  .imagen-jugador {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .mensaje-vacio {
+    text-align: center;
+    color: #888;
+    margin-top: 40px;
+    font-style: italic;
+  }
+  
