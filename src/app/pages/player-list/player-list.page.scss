@@ -1,0 +1,140 @@
+ion-content {
+    --background: #eaf4ff;
+  }
+  
+  .jugador-card {
+    margin: 12px 0;
+    padding: 12px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+  }
+  
+  .card-header-flex {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .lado-izquierdo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 130px;
+  }
+  
+  .imagen-jugador {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #3880ff;
+    margin-bottom: 8px;
+  }
+  
+  .boton-detalle {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  .lado-derecho {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .cabecera-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  
+  .titulo-info {
+    max-width: 60%;
+  }
+  
+  .guion-separador {
+    margin: 0 5px;
+    font-weight: bold;
+    color: #888;
+  }
+  
+  .equipo {
+    font-style: italic;
+    color: #1e88e5;
+    font-size: 0.9em;
+  }
+  
+  .botones-superior {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .boton-accion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .estado-texto {
+    font-size: 0.75rem;
+    color: #444;
+    margin-top: 4px;
+    text-align: center;
+    min-height: 1.2em;
+  }
+  
+  .acciones-botones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    padding-right: 12px;
+    font-size: 0.85rem;
+    color: #666;
+    min-height: 1.2em;
+  }
+  
+  .estado-accion {
+    text-align: right;
+  }
+  
+  .datos-personales {
+    display: block;
+    margin-bottom: 6px;
+    font-style: italic;
+    color: #333;
+  }
+  
+  @media screen and (max-width: 480px) {
+    .card-header-flex {
+      flex-direction: column;
+    }
+  
+    .lado-izquierdo {
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+  
+    .lado-derecho {
+      width: 100%;
+    }
+  
+    .titulo-info {
+      max-width: 100%;
+    }
+  
+    .acciones-botones {
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+  }
+  
+  

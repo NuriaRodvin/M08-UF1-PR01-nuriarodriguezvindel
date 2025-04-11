@@ -1,0 +1,114 @@
+ion-card {
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: var(--ion-card-background);
+    color: var(--ion-text-color);
+  }
+  
+  .imagen-detalle {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+  
+  .estrella-favorito {
+    color: gold;
+    font-size: 1.2em;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  
+
+  ion-card-header {
+    text-align: center;
+    padding-bottom: 0;
+  }
+  
+  ion-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--ion-text-color);
+  }
+  
+  ion-card-subtitle {
+    color: var(--ion-color-medium);
+    font-size: 1rem;
+  }
+  
+  ion-card-content p {
+    font-size: 1rem;
+    margin: 6px 0;
+    color: var(--ion-text-color);
+  }
+  
+  ion-button {
+    margin-top: 10px;
+  }
+  
+  ion-content {
+    --background: #f0f8ff; // Azul muy claro
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .imagen-jugador {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 4px solid #3880ff;
+    object-fit: cover;
+    margin-bottom: 16px;
+  }
+  
+  .nombre-jugador {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #222;
+    margin-bottom: 8px;
+  }
+  
+  .equipo-jugador {
+    font-style: italic;
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  
+  .detalles-jugador {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .detalles-jugador p {
+    font-size: 16px;
+    margin: 6px 0;
+    color: #333;
+  }
+  
+  .boton-favorito {
+    margin-top: 16px;
+    --background: #ffd700;
+    color: #000;
+    font-weight: bold;
+  }
+  
+  .volver-btn {
+    margin-top: 20px;
+  }
+  

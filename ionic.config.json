@@ -1,0 +1,7 @@
+{
+  "name": "m08-UF01-PR01-2-nuriarodriguezvindel",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
