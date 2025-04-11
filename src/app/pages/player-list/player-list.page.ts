@@ -99,7 +99,11 @@ export class PlayerListPage {
         posicion: player.position || 'N/A'
       }));
 
-      this.jugadores = [...this.jugadoresIniciales, ...nuevos];
+      this.jugadores = this.paginaActual === 1
+  ? [...this.jugadoresIniciales, ...nuevos]
+  : nuevos;
+
+
       this.nbaService.setJugadores(this.jugadores);
       this.cdr.detectChanges();
     });

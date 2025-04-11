@@ -1,9 +1,9 @@
+// src/app/pages/login/login.page.ts
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -19,7 +19,8 @@ export class LoginPage {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastController: ToastController
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -27,21 +28,34 @@ export class LoginPage {
     });
   }
 
-  login() {
+  async login() {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
-      this.authService.login(email, password)
-        .then(() => {
-          console.log('✅ Login exitoso');
-          this.router.navigateByUrl('/players');
-        })
-        .catch(err => {
-          console.error('❌ Error de login:', err);
-          alert("Error: " + err.message);
+      try {
+        await this.authService.login(email, password);
+
+        const toast = await this.toastController.create({
+          message: 'Inicio de sesión correcto',
+          duration: 2000,
+          position: 'bottom',
+          color: 'success'
         });
+        await toast.present();
+
+        this.router.navigateByUrl('/player-list');
+      } catch (error: any) {
+        const toast = await this.toastController.create({
+          message: 'Error: ' + error.message,
+          duration: 2500,
+          position: 'bottom',
+          color: 'danger'
+        });
+        await toast.present();
+
+        console.error('❌ Error de login:', error);
+      }
     }
   }
-  
 
   goToRegister() {
     this.router.navigateByUrl('/register');

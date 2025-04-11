@@ -21,4 +21,8 @@ export class AuthService {
   logout() {
     return signOut(this.auth);
   }
+
+  getUser() {
+    return this.auth.currentUser;
+  }
 }
