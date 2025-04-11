@@ -1,9 +1,8 @@
-import { CapacitorConfig } from '@capacitor/cli';
-
-const config: CapacitorConfig = {
-  appId: 'com.example.app',
-  appName: 'NBA Rookie',
-  webDir: 'www/browser' // ✔️ Así sí funciona con tu estructura actual
+const config = {
+  appId: 'com.nuria.nbaapp',
+  appName: 'NBA Rookie App',
+  webDir: 'www',
+  bundledWebRuntime: false
 };
 
 export default config;
