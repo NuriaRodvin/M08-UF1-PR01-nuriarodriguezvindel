@@ -14,12 +14,13 @@ export class NbaService {
 
   constructor(private http: HttpClient, private firestore: Firestore) {}
 
-  getPlayers(page = 1, per_page = 20): Observable<any> {
+  getPlayers(page = 1, per_page = 10): Observable<any> {
     const headers = new HttpHeaders({
-      Authorization: this.apiKey
+      Authorization: '050f334b-eef1-40b0-ae42-f4b2ebb95c72' // tu API Key correcta
     });
     return this.http.get(`https://api.balldontlie.io/v1/players?page=${page}&per_page=${per_page}`, { headers });
   }
+  
 
   setJugadores(lista: Jugador[]) {
     this.jugadores = lista;

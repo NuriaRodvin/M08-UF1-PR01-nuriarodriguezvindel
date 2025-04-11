@@ -124,19 +124,15 @@ export class PlayerListPage {
   }
 
   playSound(nombre: string) {
-    const audio = new Audio(`assets/sounds/${nombre}`);
-    audio.play();
+    const audio = new Audio(`/assets/sounds/${nombre}`);
+    audio.load();
+    audio.play().catch(err => console.error('Error sonido:', err));
   }
 
   async abrirCamara(jugador: Jugador) {
     jugador.camaraEstado = 'Abriendo cámara...';
     this.playSound('camera.mp3');
     this.cdr.detectChanges();
-
-    setTimeout(() => {
-      jugador.camaraEstado = 'Cámara activada';
-      this.cdr.detectChanges();
-    }, 1500);
 
     try {
       const image = await Camera.getPhoto({
@@ -146,24 +142,23 @@ export class PlayerListPage {
         source: CameraSource.Prompt
       });
 
+      jugador.camaraEstado = 'Cámara activada';
+
       if (image.webPath) {
         jugador.imagen = image.webPath;
-        this.cdr.detectChanges();
       }
     } catch (error) {
+      jugador.camaraEstado = 'Error al abrir la cámara';
       console.error('Error al capturar imagen', error);
     }
+
+    this.cdr.detectChanges();
   }
 
   async compartirJugador(jugador: Jugador) {
     jugador.compartirEstado = 'Compartiendo...';
     this.playSound('share.mp3');
     this.cdr.detectChanges();
-
-    setTimeout(() => {
-      jugador.compartirEstado = 'Web compartida';
-      this.cdr.detectChanges();
-    }, 1500);
 
     try {
       await Share.share({
@@ -172,9 +167,14 @@ export class PlayerListPage {
         url: 'https://nba.com',
         dialogTitle: 'Compartir jugador'
       });
+
+      jugador.compartirEstado = 'Web compartida';
     } catch (error) {
+      jugador.compartirEstado = 'Error al compartir';
       console.error('Error al compartir', error);
     }
+
+    this.cdr.detectChanges();
   }
 
   async marcarFavorito(jugador: Jugador) {

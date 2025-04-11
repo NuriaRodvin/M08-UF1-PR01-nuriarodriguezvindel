@@ -32,8 +32,9 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginPage
+    loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage)
   }
+  
 ];
 
 export const appRouterProviders = [provideRouter(routes)];
